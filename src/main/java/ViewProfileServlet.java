@@ -14,11 +14,10 @@ public class ViewProfileServlet extends HttpServlet {
         String username = (String) session.getAttribute("user");
         if(session.getAttribute("user") == null){
             response.sendRedirect("/login");
-            return;
         }else{
-            session.setAttribute("username", username);
+            request.setAttribute("user", username);
+            request.getRequestDispatcher("/profile").forward(request, response);
         }
-        request.getRequestDispatcher("/profile").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
